@@ -1,0 +1,17 @@
+---
+
+- name: Remove any existing env files
+  file:
+    path: "{{  craft_install_path  }}/{{ item }}"
+    state: "absent"
+  loop:
+    - ".env"
+    - ".env.example"
+
+- name: Put in place Craft CMS environment values file
+  template:
+    src: "craft_env.j2"
+    dest: "{{  craft_install_path  }}/.env"
+    owner: "{{ craft_user }}"
+    group: "{{ craft_user }}"
+    mode: "0660"

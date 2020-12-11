@@ -1,0 +1,52 @@
+<VirtualHost *:80>
+        ServerName {{ craft_site_url }}
+
+        ErrorLog /var/log/httpd/{{ craft_project_name }}/error_log
+        CustomLog /var/log/httpd/{{ craft_project_name }}/access_log combined
+
+        # don't loose time with IP address lookups
+        HostnameLookups Off
+
+        UseCanonicalName On
+
+        Redirect permanent / https://{{ craft_site_url }}/
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerName {{ craft_site_url }}
+
+  DocumentRoot {{ craft_install_path }}/web
+
+  ErrorLog /var/log/httpd/{{ craft_project_name }}/error_log
+  CustomLog /var/log/httpd/{{ craft_project_name }}/access_log combined
+
+  AddType application/x-httpd-php .php
+
+  # don't loose time with IP address lookups
+  HostnameLookups Off
+
+  UseCanonicalName On
+
+  <Directory {{ craft_install_path }}/web>
+     Options FollowSymlinks ExecCGI Includes
+     DirectoryIndex index.php
+     AllowOverride All
+     Require all granted
+  </Directory>
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+
+  <LocationMatch "^/(.*\.php(/.*)?)$">
+    ProxyPass  fcgi://localhost:9000/{{ craft_install_path }}/web/$1
+  </LocationMatch>
+
+  # Protocol, CipherSuite, and OCSP config in /etc/httpd/conf.d/ssl.conf
+  SSLEngine on
+  SSLCertificateFile
+  SSLCertificateKeyFile
+  SSLCertificateChainFile
+
+  # HTTP Strict Transport Security (HSTS)
+  Header always set Strict-Transport-Security "max-age=15768000"
+</VirtualHost>

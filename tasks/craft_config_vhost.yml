@@ -1,0 +1,16 @@
+---
+
+- name: Create HTTP log directory
+  file:
+    path: "/var/log/httpd/{{ craft_project_name }}"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+
+- name: Put in place HTTPD virtual host configuration
+  template:
+    src: "craft_vhost.j2"
+    dest: "/etc/httpd/vhosts.d/{{ craft_project_name }}.conf"
+    owner: "root"
+    group: "root"
+    mode: "0644"

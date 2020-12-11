@@ -1,0 +1,11 @@
+---
+
+- name: Restart PHP-FPM
+  service:
+    name: "rh-php73-php-fpm"
+    state: "restarted"
+
+- name: Restart HTTPD
+  service:
+    name: "httpd"
+    state: "restarted"

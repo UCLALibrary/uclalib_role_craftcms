@@ -1,0 +1,27 @@
+---
+
+craft_project_name: "craftcms"
+craft_user: "{{ craft_project_name }}"
+
+webroot_path: "/var/www"
+craft_install_path: "{{ webroot_path }}/{{ craft_project_name }}"
+
+craft_site_url: ""
+
+
+craft_version: "3"
+craft_download_url: "https://craftcms.com/latest-v{{ craft_version }}.tar.gz"
+
+### .env vars ###
+craft_environ: "production"
+craft_app_id: ""
+craft_security_key: ""
+craft_db_driver: ""
+craft_db_server: ""
+craft_db_port: ""
+craft_db_name: ""
+craft_db_user: ""
+craft_db_pass: ""
+craft_db_schema: "public"
+craft_db_table_prefix: ""
+#################
