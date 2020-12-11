@@ -15,7 +15,7 @@
     state: "present"
 
 - name: Add apache user to craftcms group
-   user:
+  user:
     name: "apache"
     groups: "{{ craft_user }}"
     append: "yes"
