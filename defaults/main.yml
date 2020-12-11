@@ -1,17 +1,21 @@
 ---
 
+# Give this instance of Craft CMS a project name
 craft_project_name: "craftcms"
 craft_user: "{{ craft_project_name }}"
 
+# The path on the server where craft is installed
 webroot_path: "/var/www"
 craft_install_path: "{{ webroot_path }}/{{ craft_project_name }}"
 
+# The URL where this instance of craft is accessible
 craft_site_url: ""
 
-
+# The version of craft that is installed
 craft_version: "3"
 craft_download_url: "https://craftcms.com/latest-v{{ craft_version }}.tar.gz"
 
+# Parameters that make Craft environmnet values
 ### .env vars ###
 craft_environ: "production"
 craft_app_id: ""
