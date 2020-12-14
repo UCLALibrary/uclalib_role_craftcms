@@ -2,8 +2,9 @@
 
 - name: Install Craft CMS database and initial project
   become_user: "{{ craft_user }}"
-  command: >
+  shell: >
     php craft install/craft
+    --interactive 0
     --username '{{ craft_app_user }}'
     --password '{{ craft_app_pass }}'
     --email '{{ craft_app_email }}'
