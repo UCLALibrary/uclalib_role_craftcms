@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-        ServerName {{ craft_site_url }}
+        ServerName {{ craft_app_siteurl }}
 
         ErrorLog /var/log/httpd/{{ craft_project_name }}/error_log
         CustomLog /var/log/httpd/{{ craft_project_name }}/access_log combined
@@ -9,11 +9,11 @@
 
         UseCanonicalName On
 
-        Redirect permanent / https://{{ craft_site_url }}/
+        Redirect permanent / https://{{ craft_app_siteurl }}/
 </VirtualHost>
 
 <VirtualHost *:443>
-  ServerName {{ craft_site_url }}
+  ServerName {{ craft_app_siteurl }}
 
   DocumentRoot {{ craft_install_path }}/web
 
