@@ -1,0 +1,75 @@
+---
+
+- name: Create Craft CMS group
+  group:
+    name: "{{ craft_user }}"
+    state: "present"
+
+- name: Create Craft CMS user
+  user:
+    name: "{{ craft_user }}"
+    group: "{{ craft_user }}"
+    shell: "/bin/bash"
+    home: "/home/{{ craft_user }}"
+    comment: "Craft CMS User Account"
+    state: "present"
+
+- name: Add apache user to craftcms group
+  user:
+    name: "apache"
+    groups: "{{ craft_user }}"
+    append: "yes"
+
+- name: Create Craft CMS web directory
+  file:
+    path: "{{  craft_install_path  }}"
+    owner: "{{ craft_user }}"
+    group: "{{ craft_user }}"
+    mode: "0755"
+    state: "directory"
+
+- name: Download and Unarchive Craft CMS files
+  unarchive:
+    remote_src: "yes"
+    src: "{{ craft_download_url }}"
+    dest: "{{ craft_install_path }}"
+    owner: "{{ craft_user }}"
+    group: "{{ craft_user }}"
+
+- name: Set ownership of Craft CMS files
+  file:
+    path: "{{  craft_install_path  }}"
+    owner: "{{ craft_user }}"
+    group: "{{ craft_user }}"
+    state: "directory"
+    recurse: "yes"
+
+- name: Create subdirectories within the storage directory
+  file:
+    path: "{{  craft_install_path  }}/storage/{{ item }}"
+    owner: "{{ craft_user }}"
+    group: "{{ craft_user }}"
+    state: "directory"
+    mode: "2775"
+  loop:
+    - "runtime"
+    - "logs"
+
+- name: Adjust permissions of certain files to allow writing by PHP and Craft
+  file:
+    path: "{{  craft_install_path  }}/{{ item }}"
+    owner: "{{ craft_user }}"
+    group: "{{ craft_user }}"
+    mode: "0660"
+  loop:
+    - "composer.json"
+    - "composer.lock"
+
+- name: Adjust permissions of certain directories to allow writing by PHP and Craft
+  command: >
+    find {{ craft_install_path }}/{{ item }} -type d -exec chmod 2775 {} \;
+  loop:
+    - "config"
+    - "storage"
+    - "vendor"
+    - "web/cpresources"
