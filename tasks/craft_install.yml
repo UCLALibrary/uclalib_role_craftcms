@@ -2,7 +2,7 @@
 
 - name: Install Craft CMS database and initial project
   become_user: "{{ craft_user }}"
-  shell: >
+  command: >
     php craft install/craft
     --interactive 0
     --username '{{ craft_app_user }}'
@@ -13,4 +13,4 @@
     --language 'en-US'
   args:
     chdir: "{{ craft_install_path }}"
-    creates: "{{ craft_install_path }}/config/project"
+    creates: "{{ craft_install_path }}/config/project/project.yml"
