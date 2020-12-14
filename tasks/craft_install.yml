@@ -1,9 +1,15 @@
 ---
 
+- name: Get path to PHP executable
+  become_user: "{{ craft_user }}"
+  shell: >
+    which php
+  register: php_exec
+
 - name: Install Craft CMS database and initial project
   become_user: "{{ craft_user }}"
   command: >
-    php craft install/craft
+    {{ php_exec.stdout }} craft install/craft
     --interactive 0
     --username '{{ craft_app_user }}'
     --password '{{ craft_app_pass }}'
