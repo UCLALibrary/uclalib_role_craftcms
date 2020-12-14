@@ -4,12 +4,16 @@
 craft_project_name: "craftcms"
 craft_user: "{{ craft_project_name }}"
 
+# Defines parameters for the Craft Installation
+craft_app_user: ""
+craft_app_pass: ""
+craft_app_email: ""
+craft_app_sitename: ""
+craft_app_siteurl: ""
+
 # The path on the server where craft is installed
 webroot_path: "/var/www"
 craft_install_path: "{{ webroot_path }}/{{ craft_project_name }}"
-
-# The URL where this instance of craft is accessible
-craft_site_url: ""
 
 # The version of craft that is installed
 craft_version: "3"
