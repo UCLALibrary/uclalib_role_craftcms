@@ -44,6 +44,17 @@
     state: "directory"
     recurse: "yes"
 
+- name: Create subdirectories within the storage directory
+  file:
+    path: "{{  craft_install_path  }}/storage/{{ item }}"
+    owner: "{{ craft_user }}"
+    group: "{{ craft_user }}"
+    state: "directory"
+    mode: "2775"
+  loop:
+    - "runtime"
+    - "logs"
+
 - name: Adjust permissions of certain files to allow writing by PHP and Craft
   file:
     path: "{{  craft_install_path  }}/{{ item }}"
