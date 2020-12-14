@@ -1,8 +1,8 @@
 ---
 
-- import_tasks: craft_install.yml
+- import_tasks: craft_setup.yml
   tags:
-    - craft-install
+    - craft-setup
 
 - import_tasks: craft_config_env.yml
   tags:
@@ -11,3 +11,7 @@
 - import_tasks: craft_config_vhost.yml
   tags:
     - craft-vhost
+
+- import_tasks: craft_install.yml
+  tags:
+    - craft-install

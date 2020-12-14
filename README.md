@@ -19,10 +19,14 @@ Role Variables
 
 Reference `defaults/main.yml` to review default values.
 
-Set these variables to define base project names:
+Set these variables to define base project names and initial project configuration:
 
   * `craft_project_name` - Defines a unique project name for this instance of Craft CMS
-  * `craft_site_url` - Defines the URL where this instance of Craft CMS can be reached (e.g. `craft.library.ucla.edu`)
+  * `craft_app_user` - Defines the username for the initial Craft CMS project (this will be the admin user)
+  * `craft_app_pass` - Defines the password for the user account for the initial Craft CMS project
+  * `craft_app_email` - Defines the email address for the initial Craft CMS project
+  * `craft_app_sitename` - Defines the site name for the initial Craft CMS project (e.g. `First Craft Site`)
+  * `craft_app_siteurl` - Defines the URL where this instance of Craft CMS can be reached (e.g. `craft.library.ucla.edu`)
 
 Set these variables to configure the Craft environment values:
 
