@@ -12,4 +12,4 @@
     --language 'en-US'
   args:
     chdir: "{{ craft_install_path }}"
-    creates: "{{ craft_install_path }}/project/project.yaml"
+    creates: "{{ craft_install_path }}/config/project"
