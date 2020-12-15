@@ -8,6 +8,7 @@
 
 - name: Install Craft CMS database and initial project
   become_user: "{{ craft_user }}"
+  no_log: "true"
   command: >
     {{ php_exec.stdout }} craft install/craft
     --interactive 0
