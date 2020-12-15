@@ -6,6 +6,29 @@
     source /etc/bashrc ; which php
   register: php_exec
 
+- name: Get path to php.ini file
+  become_user: "{{ craft_user }}"
+  shell: >
+    source /etc/bashrc ;
+    php --ini |
+    grep "Loaded Configuration File" |
+    awk -F ':' '{ print $2 }' | xargs
+  register: php_ini
+
+- name: Ensure PHP memory limit is set per CraftCMS specs
+  ini_file:
+    path: "{{ php_ini.stdout }}"
+    section: "PHP"
+    option: "memory_limit"
+    value: "{{ craft_php_memory_limit }}"
+
+- name: Ensure PHP max execution time is set per CraftCMS specs
+  ini_file:
+    path: "{{ php_ini.stdout }}"
+    section: "PHP"
+    option: "max_execution_time"
+    value: "{{ craft_php_max_exec_time }}"
+
 - name: Install Craft CMS database and initial project
   become_user: "{{ craft_user }}"
   no_log: "true"
