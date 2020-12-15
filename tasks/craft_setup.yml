@@ -35,6 +35,7 @@
     dest: "{{ craft_install_path }}"
     owner: "{{ craft_user }}"
     group: "{{ craft_user }}"
+    creates: "{{ craft_install_path }}/config"
 
 - name: Set ownership of Craft CMS files
   file:
