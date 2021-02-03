@@ -23,7 +23,7 @@
 - name: Create Craft CMS web directory
   file:
     path: "{{  craft_install_path  }}"
-    owner: "{{ craft_user }}"
+    owner: "apache"
     group: "{{ craft_user }}"
     mode: "0755"
     state: "directory"
@@ -33,14 +33,14 @@
     remote_src: "yes"
     src: "{{ craft_download_url }}"
     dest: "{{ craft_install_path }}"
-    owner: "{{ craft_user }}"
+    owner: "apache"
     group: "{{ craft_user }}"
     creates: "{{ craft_install_path }}/config"
 
 - name: Set ownership of Craft CMS files
   file:
     path: "{{  craft_install_path  }}"
-    owner: "{{ craft_user }}"
+    owner: "apache"
     group: "{{ craft_user }}"
     state: "directory"
     recurse: "yes"
@@ -48,7 +48,7 @@
 - name: Create subdirectories within the storage directory
   file:
     path: "{{  craft_install_path  }}/storage/{{ item }}"
-    owner: "{{ craft_user }}"
+    owner: "apache"
     group: "{{ craft_user }}"
     state: "directory"
     mode: "2775"
@@ -59,7 +59,7 @@
 - name: Adjust permissions of certain files to allow writing by PHP and Craft
   file:
     path: "{{  craft_install_path  }}/{{ item }}"
-    owner: "{{ craft_user }}"
+    owner: "apache"
     group: "{{ craft_user }}"
     mode: "0660"
   loop:
