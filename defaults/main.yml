@@ -4,6 +4,9 @@
 craft_project_name: "craftcms"
 craft_user: "{{ craft_project_name }}"
 
+# Define webserver user
+craft_webserver_user: "apache"
+
 # Defines parameters for the Craft Installation
 craft_app_user: ""
 craft_app_pass: ""
