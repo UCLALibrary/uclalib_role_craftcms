@@ -41,6 +41,8 @@ Set these variables to configure the Craft environment values:
   * `craft_db_pass` - Defines the craft DB password
   * `craft_db_schema` - Only needed for Postgres - typically this is set to `public`
   * `craft_db_table_prefix` - Defines a prefix that should be added to generated table names - this can usually be left empty
+  * `craft_allow_admin_changes` - Defines if administrative changes are allowed (true or false)
+  * `craft_allow_updates` - Defines if Craft can be updated from the admin UI (true or false)
 
 Tags
 ----
