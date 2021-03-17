@@ -35,6 +35,8 @@ craft_db_user: ""
 craft_db_pass: ""
 craft_db_schema: "public"
 craft_db_table_prefix: ""
+craft_allow_admin_changes: "true"
+craft_allow_updates: "true"
 #################
 
 # PHP INI Settings
