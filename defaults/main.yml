@@ -37,6 +37,7 @@ craft_db_schema: "public"
 craft_db_table_prefix: ""
 craft_allow_admin_changes: "true"
 craft_allow_updates: "true"
+craft_asset_volume_fs_path: ""
 #################
 
 # PHP INI Settings
