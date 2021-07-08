@@ -37,6 +37,12 @@
   ProxyRequests Off
   ProxyPreserveHost On
 
+  # Create path to Craft Assets Volume
+  Alias "/assets" "{{ craft_asset_volume_fs_path }}"
+  <Location "/assets">
+    Require all granted
+  </Location>
+
   <LocationMatch "^/(.*\.php(/.*)?)$">
     ProxyPass  fcgi://localhost:9000/{{ craft_install_path }}/web/$1
   </LocationMatch>
