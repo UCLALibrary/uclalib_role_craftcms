@@ -26,6 +26,7 @@ craft_download_url: "https://craftcms.com/latest-v{{ craft_version }}.tar.gz"
 ### .env vars ###
 craft_environ: "production"
 craft_app_id: ""
+craft_system_name: ""
 craft_security_key: ""
 craft_db_driver: ""
 craft_db_server: ""
