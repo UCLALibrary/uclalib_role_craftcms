@@ -27,6 +27,12 @@ Set these variables to define base project names and initial project configurati
   * `craft_app_email` - Defines the email address for the initial Craft CMS project
   * `craft_app_sitename` - Defines the site name for the initial Craft CMS project (e.g. `First Craft Site`)
   * `craft_app_siteurl` - Defines the URL where this instance of Craft CMS can be reached (e.g. `craft.library.ucla.edu`)
+  * `craft_assets_dir` - Defines the filesystem path to the assets directory (default is `/mnt/craft_assets`)
+  * `craft_assets_external_mount` - Defines if the assets directory is an external mount (`yes` or `no` - default is `no`)
+      * Only if `craft_assets_external_mount` is `yes`, then set the following:
+        * `craft_assets_volume_path` - defines the source path of the volume to mount
+        * `craft_assets_volume_fstype` - defines the source volume filesystem type (default is `nfs`)
+        * `craft_assets_volume_opts` - defines the source volume mount options
 
 Set these variables to configure the Craft environment values:
 
