@@ -90,3 +90,29 @@
       line: "user = {{ craft_user }}"
     - regexp: "^group"
       line: "group = {{ craft_user }}"
+
+- name: Create craft assets directory mount point 
+  file: 
+    path: "{{ craft_assets_dir }}"
+    owner: "{{ craft_user }}"
+    group: "{{ craft_user }}"
+    mode: "0755"
+    state: "directory"
+
+- block:
+  - name: Create fstab entry for craft assets volume and mount it
+    mount:
+      path: "{{ craft_assets_dir }}"
+      src: "{{ craft_assets_volume_path }}"
+      fstype: "{{ craft_assets_volume_fstype }}"
+      opts: "{{ craft_assets_volume_opts }}"
+      state: "mounted"
+
+  - name: Ensure correct ownership of craft assets dir once mounted 
+    file: 
+      path: "{{ craft_assets_dir }}"
+      owner: "{{ craft_user }}"
+      group: "{{ craft_user }}"
+      state: "directory"
+      recurse: "yes"
+  when: craft_assets_external_mount == "yes"
