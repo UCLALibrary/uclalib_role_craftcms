@@ -12,6 +12,10 @@
   tags:
     - craft-vhost
 
+- import_tasks: craft_config_php.yml
+  tags: 
+    - craft-php
+
 - import_tasks: craft_install.yml
   tags:
     - craft-install

@@ -63,6 +63,7 @@ Use the following tags to run specific role functions:
   * `craft-setup` - download/unarchive craft
   * `craft-env` - set craft environment values
   * `craft-vhost` - set craft Apache HTTPD virtual host configuration
+  * `craft-php` - set php configuration for craft
   * `craft-install` - perform initial craft project installation
 
 Dependencies
