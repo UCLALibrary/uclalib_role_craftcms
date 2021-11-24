@@ -21,7 +21,7 @@ Reference `defaults/main.yml` to review default values.
 
 Set these variables to define base project names and initial project configuration:
 
-  * `craft_project_name` - Defines a unique project name for this instance of Craft CMS
+  * `craft_project_name` - Defines a unique project name for this instance of Craft CMS - will also be used as the `craft_user` username (e.g. `craftcms` )
   * `craft_app_user` - Defines the username for the initial Craft CMS project (this will be the admin user)
   * `craft_app_pass` - Defines the password for the user account for the initial Craft CMS project
   * `craft_app_email` - Defines the email address for the initial Craft CMS project
