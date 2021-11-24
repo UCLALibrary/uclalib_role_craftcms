@@ -12,6 +12,6 @@
   template:
     src: "craft_env.j2"
     dest: "{{  craft_install_path  }}/.env"
-    owner: "{{ craft_webserver_user }}"
+    owner: "{{ craft_user }}"
     group: "{{ craft_user }}"
     mode: "0660"

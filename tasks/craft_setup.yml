@@ -14,16 +14,10 @@
     comment: "Craft CMS User Account"
     state: "present"
 
-- name: Add webserver user to craftcms group
-  user:
-    name: "{{ craft_webserver_user }}"
-    groups: "{{ craft_user }}"
-    append: "yes"
-
 - name: Create Craft CMS web directory
   file:
     path: "{{  craft_install_path  }}"
-    owner: "{{ craft_webserver_user }}"
+    owner: "{{ craft_user }}"
     group: "{{ craft_user }}"
     mode: "0755"
     state: "directory"
@@ -33,14 +27,14 @@
     remote_src: "yes"
     src: "{{ craft_download_url }}"
     dest: "{{ craft_install_path }}"
-    owner: "{{ craft_webserver_user }}"
+    owner: "{{ craft_user }}"
     group: "{{ craft_user }}"
     creates: "{{ craft_install_path }}/config"
 
 - name: Set ownership of Craft CMS files
   file:
     path: "{{  craft_install_path  }}"
-    owner: "{{ craft_webserver_user }}"
+    owner: "{{ craft_user }}"
     group: "{{ craft_user }}"
     state: "directory"
     recurse: "yes"
@@ -48,10 +42,10 @@
 - name: Create subdirectories within the storage directory
   file:
     path: "{{  craft_install_path  }}/storage/{{ item }}"
-    owner: "{{ craft_webserver_user }}"
+    owner: "{{ craft_user }}"
     group: "{{ craft_user }}"
     state: "directory"
-    mode: "2775"
+    mode: "0775"
   loop:
     - "runtime"
     - "logs"
@@ -59,7 +53,7 @@
 - name: Adjust permissions of certain files to allow writing by PHP and Craft
   file:
     path: "{{  craft_install_path  }}/{{ item }}"
-    owner: "{{ craft_webserver_user }}"
+    owner: "{{ craft_user }}"
     group: "{{ craft_user }}"
     mode: "0660"
   loop:
@@ -68,9 +62,31 @@
 
 - name: Adjust permissions of certain directories to allow writing by PHP and Craft
   command: >
-    find {{ craft_install_path }}/{{ item }} -type d -exec chmod 2775 {} \;
+    find {{ craft_install_path }}/{{ item }} -type d -exec chmod 0775 {} \;
   loop:
     - "config"
     - "storage"
     - "vendor"
     - "web/cpresources"
+
+- name: Adjust Apache config to run as craft user 
+  lineinfile:
+    path: "/etc/httpd/conf/httpd.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - regexp: "^User"
+      line: "User {{ craft_user }}"
+    - regexp: "^Group"
+      line: "Group {{ craft_user }}"
+
+- name: Adjust PHP-FPM config to run as craft user 
+  lineinfile: 
+    path: "/etc/opt/rh/rh-php73/php-fpm.d/www.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - regexp: "^user"
+      line: "user = {{ craft_user }}"
+    - regexp: "^group"
+      line: "group = {{ craft_user }}"
