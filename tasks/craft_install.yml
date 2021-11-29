@@ -1,5 +1,11 @@
 ---
 
+- name: Get path to PHP executable
+  become_user: "{{ craft_user }}"
+  shell: >
+    source /etc/bashrc ; which php
+  register: php_exec
+
 - name: Install Craft CMS database and initial project
   become_user: "{{ craft_user }}"
   no_log: "true"
