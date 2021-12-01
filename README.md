@@ -39,6 +39,7 @@ Set these variables to configure the Craft environment values:
   * `craft_environ` - Defines the craft operating environment (unless you are developing against craft, this should be set to `production`)
   * `craft_app_id` - Defines a unique identifier within craft to store session data and other information
   * `craft_system_name` - Defines the site/system name of this instance of craft (e.g. `Test Craft Site`)
+  * `craft_system_email` - Defines the system email address used by this instance of craft
   * `craft_security_key` - Defines a security key used to hash and encrypt data with craft
   * `craft_db_driver` - Defines the DB driver to use (can be `pgsql` or `mysql`) - this role only supports `pgsql`
   * `craft_db_server` - Defines the DB server hostname
