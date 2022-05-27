@@ -52,3 +52,4 @@ craft_preview_base_url: ""
 # PHP INI Settings
 craft_php_memory_limit: "256M"
 craft_php_max_exec_time: "120"
+craft_php_upload_max_filesize: "50M"
