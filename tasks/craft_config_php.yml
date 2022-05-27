@@ -28,3 +28,10 @@
     section: "PHP"
     option: "max_execution_time"
     value: "{{ craft_php_max_exec_time }}"
+
+- name: Set PHP max file size for uploads
+  ini_file:
+    path: "{{ php_ini.stdout }}"
+    section: "PHP"
+    option: "upload_max_filesize"
+    value: "{{ craft_php_upload_max_filesize }}"
