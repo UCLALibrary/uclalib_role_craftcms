@@ -35,3 +35,10 @@
     section: "PHP"
     option: "upload_max_filesize"
     value: "{{ craft_php_upload_max_filesize }}"
+
+- name: Set max size of POST requests PHP will accept
+  ini_file:
+    path: "{{ php_ini.stdout }}"
+    section: "PHP"
+    option: "upload_max_filesize"
+    value: "{{ craft_php_upload_max_filesize }}"
