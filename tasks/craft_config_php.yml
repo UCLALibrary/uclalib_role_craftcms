@@ -40,5 +40,5 @@
   ini_file:
     path: "{{ php_ini.stdout }}"
     section: "PHP"
-    option: "upload_max_filesize"
-    value: "{{ craft_php_upload_max_filesize }}"
+    option: "post_max_size"
+    value: "{{ craft_php_post_max_size }}"
