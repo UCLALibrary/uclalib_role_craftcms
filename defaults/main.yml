@@ -47,6 +47,7 @@ craft_asset_volume_fs_path: "{{ craft_assets_dir }}"
 craft_asset_base_url: ""
 craft_headless_mode: "false"
 craft_preview_base_url: ""
+craft_preview_meap_base_url: ""
 #################
 
 # PHP INI Settings
