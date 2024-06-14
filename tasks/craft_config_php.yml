@@ -42,3 +42,8 @@
     section: "PHP"
     option: "post_max_size"
     value: "{{ craft_php_post_max_size }}"
+
+- name: Enable PHP-FPM service 
+  service:
+    name: "php-fpm"
+    enabled: true
