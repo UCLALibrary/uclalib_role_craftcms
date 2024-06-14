@@ -55,3 +55,5 @@ craft_php_memory_limit: "512M"
 craft_php_max_exec_time: "120"
 craft_php_upload_max_filesize: "50M"
 craft_php_post_max_size: "50M"
+
+craft_php_fpm_config_path: "/etc/php-fpm.d/www.conf"

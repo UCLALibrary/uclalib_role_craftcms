@@ -29,7 +29,7 @@
 
 - name: Adjust PHP-FPM config to run as craft user 
   lineinfile: 
-    path: "/etc/opt/rh/rh-php73/php-fpm.d/www.conf"
+    path: "{{ craft_php_fpm_config_path }}"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
