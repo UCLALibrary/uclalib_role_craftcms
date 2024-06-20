@@ -92,8 +92,5 @@
       owner: "{{ craft_user }}"
       group: "{{ craft_user }}"
       state: "directory"
-      recurse: "yes"
-    register: craft_assets_ownership
-    failed_when: 
-      - '".snapshot" not in craft_assets_ownership.msg'
+      recurse: "no"
   when: craft_assets_external_mount == "yes"
