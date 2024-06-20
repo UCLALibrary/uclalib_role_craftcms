@@ -22,9 +22,11 @@ craft_assets_volume_path: ""
 craft_assets_volume_fstype: "nfs"
 craft_assets_volume_opts: "vers=3,_netdev,intr,hard,nosuid,noexec"
 
-# The version of craft that is installed
-craft_version: "3"
-craft_download_url: "https://craftcms.com/latest-v{{ craft_version }}.tar.gz"
+# The version of CraftCMS to install
+# Versions are available on the CraftCMS GitHub releases page
+# https://github.com/craftcms/cms/releases
+craft_version: ""
+craft_download_url: "https://github.com/craftcms/cms/releases/download/{{ craft_version }}/CraftCMS-{{ craft_version }}.zip"
 
 # Parameters that make Craft environmnet values
 ### .env vars ###
