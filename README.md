@@ -56,6 +56,7 @@ Set these variables to configure the Craft environment values:
   * `craft_headless_mode` - Defines if craft should operate in headless mode (true or false)
   * `craft_preview_base_url` - Defines the base url used for previewing Craft content
   * `craft_preview_meap_base_url` - Defines the base url used for previewing MEAP content
+  * `craft_preview_ftva_base_url` - Defines the base url used for previewing FTVA content
 
 Tags
 ----
