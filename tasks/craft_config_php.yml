@@ -1,5 +1,4 @@
 ---
-
 - name: Get path to PHP executable
   become_user: "{{ craft_user }}"
   shell: >
@@ -43,7 +42,16 @@
     option: "post_max_size"
     value: "{{ craft_php_post_max_size }}"
 
-- name: Enable PHP-FPM service 
+- name: Enable PHP-FPM service
   service:
     name: "php-fpm"
     enabled: true
+
+- name: Fix session permissions at boot
+  template:
+    src: fix-session-permissions.service.j2
+    dest: /etc/systemd/system/fix-session-permissions.service
+    mode: "0444"
+    owner: root
+    group: root
+  notify: Reload systemd

@@ -1,5 +1,4 @@
 ---
-
 - name: Restart PHP-FPM
   service:
     name: "php-fpm"
@@ -9,3 +8,7 @@
   service:
     name: "httpd"
     state: "restarted"
+
+- name: Reload systemd
+  systemd_service:
+    daemon_reload: true

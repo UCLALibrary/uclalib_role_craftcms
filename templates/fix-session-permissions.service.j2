@@ -1,0 +1,9 @@
+[Unit]
+Description=Fix session cache permissions
+After=php-fpm.service
+
+[Service]
+ExecStart=/usr/bin/chown {{ craft_user }}:{{ craft_user }} /var/lib/php/session
+
+[Install]
+WantedBy=default.target
